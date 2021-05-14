@@ -1,0 +1,36 @@
+<%- contentFor('heros')%>
+<link rel="stylesheet" href="/css/Sesion.css" />
+<%- contentFor('body') %>
+<section> 
+    <div class="box">
+        
+         <div class="Row-General center  ">
+             <div class="form">
+             <form action="/home/informacion"  method="GET">
+
+             <div class="Col-General ">
+                     <p class="Form-Titulo">Ingrese sus Credenciales</p>
+                     <br>
+             
+              
+                         <label >Usuario </label>
+                         <input type="text" name="User_txt" id="User_txt" autofocus="">
+                         <br>
+                         <label >Contraseña</label>
+                         <input  type="password" name="Pass_TXT" id="Pass_TXT">
+                         <hr>
+                         <a class="aa" href="#">Olvide mi contraseña</a>
+                         <a class="aa" href="/usernew">Crear usuario</a>
+                         <hr>
+                        <button type="submit">Ingresar</button>
+             
+             
+                  
+                     <br>
+             </div>
+             </form>
+         </div>
+         </div>
+        </div>
+    </div>
+ </section>
