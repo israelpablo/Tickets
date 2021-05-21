@@ -53,7 +53,6 @@ console.log(tipouser)
    
     
     }
-      //pages/Search',{extra:result[0], Fechas:prueba1,hora1:hora1,hora2:hora2,mquin:maquina,sele1:select1,sele2:select2 });
       })
     
   });
