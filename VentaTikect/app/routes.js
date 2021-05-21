@@ -6,8 +6,62 @@ const router= express.Router();
 // export our router
 module.exports=router;
 // route for our homepage
+
+admin=`<header>
+<nav class="navbar navbar-inverse">
+  <a href="/Sesion" class="navbar-brand">Inicio de sesion</a>
+  <ul class="nav navbar-nav">
+    <li><a href="/">Home</a></li>
+    <li><a href="/Venta">Comprar boleta</a></li>
+    <li><a href="/ConsultaH">Historial de  boleto</a></li>
+    <li><a href="/Hitoria">Historial de movimientos</a></li>
+    <li><a href="/Alto">Alta usuario </a></li>
+    <li><a href="/about">About</a></li>
+    <li><a href="/contact">Contact</a></li>
+  </ul>
+</nav>
+</header>`;
+comun=`<header>
+<nav class="navbar navbar-inverse">
+  <a href="/Sesion" class="navbar-brand">Inicio de sesion</a>
+  <ul class="nav navbar-nav">
+    <li><a href="/">Home</a></li>
+    <li><a href="/Venta">Comprar boleta</a></li>
+    <li><a href="/ConsultaH">Historial de  boleto</a></li>
+    <li><a href="/about">About</a></li>
+    <li><a href="/contact">Contact</a></li>
+  </ul>
+</nav>
+</header>`;
+chofer=`<header>
+<nav class="navbar navbar-inverse">
+  <a href="/Sesion" class="navbar-brand">Inicio de sesion</a>
+  <ul class="nav navbar-nav">
+    <li><a href="/">Home</a></li>
+    <li><a href="/Captura">Capturar boleto</a></li>
+    <li><a href="/HistorialC">Total Boletos</a></li>
+    <li><a href="/about">About</a></li>
+    <li><a href="/contact">Contact</a></li>
+  </ul>
+</nav>
+</header>`;
+defaults=`<header>
+<nav class="navbar navbar-inverse">
+  <a href="/Sesion" class="navbar-brand">Inicio de sesion</a>
+  <ul class="nav navbar-nav">
+    <li><a href="/">Home</a></li>
+    <li><a href="/ConsultaH">Historial de  boleto</a></li>
+    <li><a href="/about">About</a></li>
+    <li><a href="/contact">Contact</a></li>
+  </ul>
+</nav>
+</header>`;
+
+
+
+
 router.get('/', function(req, res) {
-    res.render('pages/home');
+    res.render('pages/home',{def:defaults});
   });
   router.get('/Sesion', function(req, res) {
     res.render('pages/Sesion');
@@ -39,16 +93,16 @@ console.log(tipouser)
     switch(tipouser)
     {
       case 'Comun':
-      res.render('pages/home');
+        res.render('pages/home',{def:comun});
     break;
     case 'Admin':
-      res.render('pages/Sesion');
+      res.render('pages/home',{def:admin});
       break;
       case 'Chofer':
-         res.render('pages/Sesion');
+        res.render('pages/home',{def:chofer});
         break;
         case 'Default':
-          res.render('pages/Sesion');
+          res.render('pages/home',{def:defaults});
           break;
    
     
