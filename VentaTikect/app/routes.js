@@ -27,3 +27,41 @@ router.get('/', function(req, res) {
   router.get('/usernew', function(req, res) {
     res.render('pages/usernew');
   });
+  var tipouser
+  const dbAcceso = require('../app/Procedures/Accesos');
+  router.post('/Sesion', function(req, res) {
+   
+    pass=req.body.password;
+    users=req.body.username;
+    dbAcceso.Buscar(users,pass).then(result=>{
+    act(result);
+    console.log(activeuser);
+    switch(tipouser)
+    {
+      case 'Comun':
+      res.render('pages/home');
+    break;
+    case 'Admin':
+      res.render('pages/Sesion');
+      break;
+      case 'Chofer':
+         res.render('pages/Sesion');
+        break;
+        case 'Default':
+          res.render('pages/Sesion');
+          break;
+   
+    
+    }
+      //pages/Search',{extra:result[0], Fechas:prueba1,hora1:hora1,hora2:hora2,mquin:maquina,sele1:select1,sele2:select2 });
+      })
+    
+  });
+  function act(recibir)
+  {
+  activo=recibir;
+  activo[0].forEach(logArrayElements2);
+  }
+  function logArrayElements2(element, index, array) {
+       tipouser= element.NombreAcceso;
+   }

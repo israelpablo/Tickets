@@ -1,8 +1,8 @@
 const config = {
-    user: 'it_general',
-    password: '123456',
-    server: 'WST-TJIT-003', 
-    database: 'Specific_Gravity_Test1',
+    user: 'ticket',
+    password: '123$jkl',
+    server: 'WST-TJIT-007', 
+    database: 'AlterTicket',
     port: parseInt("1433"),
     options: {
           "enableArithAbort": true
