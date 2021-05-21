@@ -31,11 +31,11 @@ router.get('/', function(req, res) {
   const dbAcceso = require('../app/Procedures/Accesos');
   router.post('/Sesion', function(req, res) {
    
-    pass=req.body.password;
-    users=req.body.username;
-    dbAcceso.Buscar(users,pass).then(result=>{
+    pass=req.body.Pass_TXT;
+    users=req.body.User_txt;
+    dbAcceso.Accesos(users,pass).then(result=>{
     act(result);
-    console.log(activeuser);
+console.log(tipouser)
     switch(tipouser)
     {
       case 'Comun':
