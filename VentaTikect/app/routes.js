@@ -64,9 +64,15 @@ var ids;
 //Sesion default
 
   router.get('/', function(req, res) {
-    res.render('pages/home',{def:defaults});
+    de=`<a href="/" class="btn btn-lg btn-primary">Solicitar Boleto</a>
+    <a href="/contact" class="btn btn-lg btn-primary">Cotactanos</a>`;
+    dbConsulta.Consulta('Catalogo').then(result52=>{
+      console.log(result52)
+    res.render('pages/home',{def:defaults,df:de,catalogo:result52[0]});
+  });
   });
   router.get('/Sesion', function(req, res) {
+    
     res.render('pages/Sesion',{def:defaults});
   });
   router.get('/about', function(req, res) {
@@ -80,6 +86,7 @@ var tipouser;
 bandera=false;
 var iduse,nombreuse;
   const dbAcceso = require('../app/Procedures/Accesos');
+  const dbConsulta=require('../app/Procedures/Consulta');
   router.post('/Sesion', function(req, res) {
    
 var menu;
@@ -93,11 +100,15 @@ banderas= false;
      counter=0;
    revisar=activeuser;
 revisar.forEach(IndexConexion); 
+de=`<a href="/`+iduse+`" class="btn btn-lg btn-primary">Solicitar Boleto</a>
+<a href="/contact/`+iduse+`" class="btn btn-lg btn-primary">Cotactanos</a>`;
       if(banderas==true)
 {      activeuser.splice(counter,1);}
+dbConsulta.Consulta('Catalogo').then(result52=>{
     switch(tipouser)
     {
       case 'Comun':
+      
         menu=comun;
         menu=menu.replace('NombreUser',nombreuse);
         menu=menu.replace('ID',iduse);
@@ -108,7 +119,8 @@ revisar.forEach(IndexConexion);
         menu=menu.replace('ID',iduse);
         menu=menu.replace('ID',iduse);
         menu=menu.replace('ID',iduse);
-        res.render('pages/home',{def:menu});
+
+        res.render('pages/home',{def:menu,df:de,catalogo:result52});
 
     break;
     case 'Admin':
@@ -122,7 +134,7 @@ revisar.forEach(IndexConexion);
       menu=menu.replace('ID',iduse);
       menu=menu.replace('ID',iduse);
       menu=menu.replace('ID',iduse);
-      res.render('pages/home',{def:admin});
+      res.render('pages/home',{def:admin,df:de,catalogo:result52});
       break;
       case 'Chofer':
         menu=chofer;
@@ -135,15 +147,18 @@ revisar.forEach(IndexConexion);
         menu=menu.replace('ID',iduse);
         menu=menu.replace('ID',iduse);
         menu=menu.replace('ID',iduse);
-        res.render('pages/home',{def:chofer});
+        res.render('pages/home',{def:chofer,df:de,catalogo:result52});
         break;
         case 'Default':
-          res.render('pages/home',{def:defaults});
+          de=`<a href="/" class="btn btn-lg btn-primary">Solicitar Boleto</a>
+          <a href="/contact" class="btn btn-lg btn-primary">Cotactanos</a>`;
+          res.render('pages/home',{def:defaults,df:de,catalogo:result52});
           break;
    
     
     }
-      })
+      });
+    });
     
   });
 
@@ -192,17 +207,24 @@ revisar.forEach(IndexConexion);
 
 
 
-
-
-
-
-
-
-
-
-  router.get('/:hola', function(req, res) {
-    res.render('pages/home',{def:comun});
+  router.get('/olvido', function(req, res) {
+    res.render('pages/home',{def:defaults});
   });
+
+  router.get('/usernew', function(req, res) {
+    res.render('pages/usernew',{def:defaults});
+  });
+
+
+
+
+
+
+
+
+ /* router.get('/:hola', function(req, res) {
+    res.render('pages/home',{def:comun});
+  });*/
   router.get('/Sesion', function(req, res) {
     res.render('pages/Sesion');
   });
@@ -218,7 +240,7 @@ revisar.forEach(IndexConexion);
   router.get('/Consulta', function(req, res) {
     res.render('pages/Consulta');
   });
-  router.get('/usernew', function(req, res) {
-    res.render('pages/usernew');
-  });
+ // router.get('/usernew', function(req, res) {
+  //  res.render('pages/usernew');
+ // });
   

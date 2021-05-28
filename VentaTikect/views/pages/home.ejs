@@ -1,13 +1,14 @@
 
 <%- contentFor('heros')%>
+<link rel="stylesheet" href="/css/Tabla.css" />  
+
 <%- def%>
 <section class="hero">
     <div class="hero-content">
       <h2>Bienvenidos a Alterticket !</h2>
       <p>Solicita tu boleto aqui</p>
   
-      <a href="/" class="btn btn-lg btn-primary">Solicitar Boleto</a>
-      <a href="/contact" class="btn btn-lg btn-primary">Cotactanos</a>
+      <%- df%>
     </div>
   </section>
   <%- contentFor('body') %>
@@ -60,56 +61,29 @@
 </div>
 
 <div class="Row-General">
-<div class="box2 center">
+<div class="box12 center">
 <table class="default ce">
+  <tr>
+    <th>Ruta</th>
+    <th>Precio</th>
+    <th></th>
+  </tr> 
+  <% catalogo.forEach(function(catalogo) { %>
 
-    <tr>
+  <tr>
   
-      <td>Celda 1</td>
-  
-      <td>Celda 2</td>
-  
-      <td>Celda 3</td>
-  
-    </tr>
-  
-    <tr>
-  
-      <td>Celda 4</td>
-  
-      <td>Celda 5</td>
-  
-      <td>Celda 6</td>
-  
-    </tr>
-  
+    <td><%= catalogo.NombreRuta %></td>
+
+    <td><%= catalogo.precio %></td>
+
+    <td>Celda 6</td>
+
+  </tr>
+
+  <% }); %>
   </table>
 </div>
-<div class="box2 center">
-<table class="default">
 
-    <tr>
-  
-      <td>Celda 1</td>
-  
-      <td>Celda 2</td>
-  
-      <td>Celda 3</td>
-  
-    </tr>
-  
-    <tr>
-  
-      <td>Celda 4</td>
-  
-      <td>Celda 5</td>
-  
-      <td>Celda 6</td>
-  
-    </tr>
-  
-  </table>
-</div>
 </div>
 
 
