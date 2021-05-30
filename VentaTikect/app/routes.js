@@ -62,8 +62,7 @@ defaults=`<header>
 var  activeuser=[];
 var ids;
 //Sesion default
-
-  router.get('/', function(req, res) {
+router.get('/', function(req, res) {
     de=`<a href="/" class="btn btn-lg btn-primary">Solicitar Boleto</a>
     <a href="/contact" class="btn btn-lg btn-primary">Cotactanos</a>`;
     dbConsulta.Consulta('Catalogo').then(result52=>{
@@ -119,9 +118,10 @@ dbConsulta.Consulta('Catalogo').then(result52=>{
         menu=menu.replace('ID',iduse);
         menu=menu.replace('ID',iduse);
         menu=menu.replace('ID',iduse);
+        dbConsulta.Consulta('Catalogo').then(result52=>{
 
-        res.render('pages/home',{def:menu,df:de,catalogo:result52});
-
+        res.render('pages/home',{def:menu,df:de,catalogo:result52[0]});
+      });
     break;
     case 'Admin':
       menu=admin;
@@ -134,7 +134,10 @@ dbConsulta.Consulta('Catalogo').then(result52=>{
       menu=menu.replace('ID',iduse);
       menu=menu.replace('ID',iduse);
       menu=menu.replace('ID',iduse);
-      res.render('pages/home',{def:admin,df:de,catalogo:result52});
+      dbConsulta.Consulta('Catalogo').then(result52=>{
+
+      res.render('pages/home',{def:admin,df:de,catalogo:result52[0]});
+    });
       break;
       case 'Chofer':
         menu=chofer;
@@ -147,7 +150,10 @@ dbConsulta.Consulta('Catalogo').then(result52=>{
         menu=menu.replace('ID',iduse);
         menu=menu.replace('ID',iduse);
         menu=menu.replace('ID',iduse);
-        res.render('pages/home',{def:chofer,df:de,catalogo:result52});
+        dbConsulta.Consulta('Catalogo').then(result52=>{
+
+        res.render('pages/home',{def:chofer,df:de,catalogo:result52[0]});
+      });
         break;
         case 'Default':
           de=`<a href="/" class="btn btn-lg btn-primary">Solicitar Boleto</a>
@@ -201,7 +207,12 @@ function IndexConexion(element,index,array)
 revisar.forEach(IndexConexion); 
      if(banderas==true)
 {      activeuser.splice(counter,1);}
-    res.render('pages/home',{def:defaults});
+de=`<a href="/" class="btn btn-lg btn-primary">Solicitar Boleto</a>
+<a href="/contact" class="btn btn-lg btn-primary">Cotactanos</a>`;
+dbConsulta.Consulta('Catalogo').then(result52=>{
+  console.log(result52)
+res.render('pages/home',{def:defaults,df:de,catalogo:result52[0]});
+});
   });
 
 
