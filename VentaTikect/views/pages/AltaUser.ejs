@@ -2,8 +2,8 @@
 <%- contentFor('heros')%>
 <%- def%>
 <link rel="stylesheet" href="/css/Sesion.css" />
-<%- contentFor('body') %>
-<section> 
+  <%- contentFor('body') %>
+  <section> 
     <div class="box">
         
            <div class="Row-General center  ">
@@ -11,7 +11,7 @@
                              <form action="/home/informacion"  method="GET">
 
                                 <div class="Col-General center ">
-                                    <p class="p">Registro</p>
+                                    <p class="p">Registro Usuario del Sistema</p>
                                     <div class="boxing2">
                                         <div class="Row-General">
                                             <div class="boxing">
@@ -60,6 +60,22 @@
                                       
                                     </div>
                                     <br>
+                                    <div class="Row-General center">
+                                      <div class="boton">
+
+                                                                    <label>Rol de usuario</label>
+                        </div> 
+                              </div>
+                              <div class="Row-General center">
+                                <div class="boton">
+
+                                  <select name="select">
+                                    <option value="value1"selected>Seleccione opcion</option>
+                                    <option value="value2" >Administrador</option>
+                                    <option value="value3">Chofer</option>
+                                  </select>
+                  </div> 
+                        </div>
                                     <div class="Row-General center">
                                         <div class="boton">
  

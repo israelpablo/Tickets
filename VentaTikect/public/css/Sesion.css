@@ -83,11 +83,11 @@ width: 45%;
   border-radius: 15px;
 }
 .boxing{
-  width: 50%;
+  width: 33%;
 }
 .boxing2{
 margin-left: 160px;
-  width: 35%;
+  width:85%;
 }
 
 .boton{
@@ -104,4 +104,9 @@ align-items: flex-start;
   display: flex;
 align-items: flex-end;
   justify-content: right;
+}
+.p{
+font-size: 80px;
+color: rgb(184, 179, 179);
+  
 }
