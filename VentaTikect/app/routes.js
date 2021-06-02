@@ -16,7 +16,7 @@ admin=`<header>
     <li><a href="/Venta/ID">Comprar boleta</a></li>
     <li><a href="/ConsultaH/ID">Historial de  boleto</a></li>
     <li><a href="/Hitoria/ID">Historial de movimientos</a></li>
-    <li><a href="/Alto/ID">Alta usuario </a></li>
+    <li><a href="/Altau/ID">Alta usuario </a></li>
     <li><a href="/about/ID">About</a></li>
     <li><a href="/contact/ID">Contact</a></li>
   </ul>
@@ -225,8 +225,33 @@ res.render('pages/home',{def:defaults,df:de,catalogo:result52[0]});
   router.get('/usernew', function(req, res) {
     res.render('pages/usernew',{def:defaults});
   });
+router.get('/Altau/:id',function(req,res){
+res.render('pages/AltaUser',{def:admin});
+});
+
+router.post('/Altau/:id',function(req,res){
+ nombre= req.body.nombre;
+ ApellidoP=req.body.apellido1;
+ ApellidoM=req.body.apellido2;
+ Usuario=req.body.Usario;
+ contraseña =req.body.Contras1;
+Rol=req.body.select;
+switch(Rol)
+{
+  case 'value1':
+    res.render('pages/AltaUser',{def:admin});
+    break;
+    case 'value2':
+      res.render('pages/AltaUser',{def:admin});
+      break;
+      case 'value3':
+        res.render('pages/AltaUser',{def:admin});
+        break;
+}
 
 
+  });
+  
 
 
 

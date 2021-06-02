@@ -92,7 +92,7 @@ margin-left: 160px;
 
 .boton{
 
-  width: 25%;
+  width: 40%;
 }
 .izquierda{
   display:flex;
@@ -106,7 +106,7 @@ align-items: flex-end;
   justify-content: right;
 }
 .p{
-font-size: 80px;
+font-size: 60px;
 color: rgb(184, 179, 179);
   
 }

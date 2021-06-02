@@ -2,13 +2,14 @@
 <%- contentFor('heros')%>
 <%- def%>
 <link rel="stylesheet" href="/css/Sesion.css" />
+<script src="/js/jquery-3.2.1.js"></script>
   <%- contentFor('body') %>
   <section> 
     <div class="box">
         
            <div class="Row-General center  ">
                        <div class="registro">
-                             <form action="/home/informacion"  method="GET">
+                             <form action="/Altau/id" class="form1" method="POST" id="form1">
 
                                 <div class="Col-General center ">
                                     <p class="p">Registro Usuario del Sistema</p>
@@ -51,25 +52,20 @@
                                                 <input type="text" name="Usuario" id="Usuariotxt" autofocus="">
                                             </div> 
                                             <div class="boxing">
-                                                <input  type="text" name="Contras1" id="ContrasTXT1">
+                                                <input  type="password" name="Contras1" id="ContrasTXT1">
                                             </div>
                                             <div class="boxing">
-                                                <input  type="text" name="Contras2" id="ContrasTXT2">
+                                                <input  type="password" name="Contras2" id="ContrasTXT2">
                                             </div>
                                         </div>
                                       
                                     </div>
-                                    <br>
                                     <div class="Row-General center">
                                       <div class="boton">
 
                                                                     <label>Rol de usuario</label>
-                        </div> 
-                              </div>
-                              <div class="Row-General center">
-                                <div class="boton">
-
-                                  <select name="select">
+                        
+                                  <select name="select" id="select1">
                                     <option value="value1"selected>Seleccione opcion</option>
                                     <option value="value2" >Administrador</option>
                                     <option value="value3">Chofer</option>
@@ -77,9 +73,10 @@
                   </div> 
                         </div>
                                     <div class="Row-General center">
-                                        <div class="boton">
- 
-                                                                      <button type="submit">Registrar</button>
+                                        <div class="boton">     
+                                             <button id="Registro">Registrar</button> 
+                                            <button type="reset" >Cancelar</button>                      
+                                            
                           </div> 
                                 </div>
                              </form>
@@ -90,3 +87,42 @@
     </div>
   
  </section>
+ <script >
+     $('#Registro').click(function(){
+         val=$('#ContrasTXT1').val();
+         val2=$('#ContrasTXT2').val();
+        
+
+         
+        if(val==val2)
+        {
+
+            val3=$('#select1 option:selected').val();
+
+          // switch(val3)
+           //{
+            //   case'value1':
+            if (val3=='value1')
+            {
+               alert('Elige un rol');
+             }
+              // break;
+               //case'value2':
+               //$('#form1').attr('action', '/adas');
+               //break;
+               //case'value3':
+              // $('#form1').attr('action', '/adas');
+               //break;
+           //}
+    
+
+             
+        }
+        else
+        {
+alert('Verificar contraseña');
+        }
+
+});
+ </script>
+ 
