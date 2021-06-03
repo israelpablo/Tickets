@@ -86,6 +86,7 @@ bandera=false;
 var iduse,nombreuse;
   const dbAcceso = require('../app/Procedures/Accesos');
   const dbConsulta=require('../app/Procedures/Consulta');
+  const dbAlta=require('../app/Procedures/AltaEmpleado');
   router.post('/Sesion', function(req, res) {
    
 var menu;
@@ -94,15 +95,17 @@ var menu;
     users=req.body.User_txt;
     dbAcceso.Accesos(users,pass).then(result=>{
     act(result);
-console.log(tipouser)
+
+console.log(nombreuse)
 banderas= false;
      counter=0;
-   revisar=activeuser;
-revisar.forEach(IndexConexion); 
+ /*  revisar=activeuser;
+revisar.forEach(IndexConexion); */
 de=`<a href="/`+iduse+`" class="btn btn-lg btn-primary">Solicitar Boleto</a>
 <a href="/contact/`+iduse+`" class="btn btn-lg btn-primary">Cotactanos</a>`;
-      if(banderas==true)
+ /*     if(banderas==true)
 {      activeuser.splice(counter,1);}
+*/
 dbConsulta.Consulta('Catalogo').then(result52=>{
     switch(tipouser)
     {
@@ -136,7 +139,7 @@ dbConsulta.Consulta('Catalogo').then(result52=>{
       menu=menu.replace('ID',iduse);
       dbConsulta.Consulta('Catalogo').then(result52=>{
 
-      res.render('pages/home',{def:admin,df:de,catalogo:result52[0]});
+      res.render('pages/home',{def:menu,df:de,catalogo:result52[0]});
     });
       break;
       case 'Chofer':
@@ -152,7 +155,7 @@ dbConsulta.Consulta('Catalogo').then(result52=>{
         menu=menu.replace('ID',iduse);
         dbConsulta.Consulta('Catalogo').then(result52=>{
 
-        res.render('pages/home',{def:chofer,df:de,catalogo:result52[0]});
+        res.render('pages/home',{def:menu,df:de,catalogo:result52[0]});
       });
         break;
         case 'Default':
@@ -193,7 +196,7 @@ function IndexConexion(element,index,array)
       FNAME: element.Nombre,
     LNAME: element.ApellidoP,
     LNAME2:element.ApellidoM,
-      ROLE:element.NombreAcceso
+      ROLE:element.IdAcceso
     };
     activeuser.push(contact);
        tipouser= element.NombreAcceso;
@@ -215,9 +218,6 @@ res.render('pages/home',{def:defaults,df:de,catalogo:result52[0]});
 });
   });
 
-
-
-
   router.get('/olvido', function(req, res) {
     res.render('pages/home',{def:defaults});
   });
@@ -226,10 +226,52 @@ res.render('pages/home',{def:defaults,df:de,catalogo:result52[0]});
     res.render('pages/usernew',{def:defaults});
   });
 router.get('/Altau/:id',function(req,res){
-res.render('pages/AltaUser',{def:admin});
-});
+form= '<form action="/Altau/idusuario" class="form1" method="POST" id="form1">';
+form =form.replace('idusuario',req.params.id);
 
+
+res.render('pages/AltaUser',{def:admin,forma:form});
+});
+var ids;
+var bander;
 router.post('/Altau/:id',function(req,res){
+  ids=req.params.id;
+  console.log(ids);
+  bander=false;
+revision= activeuser;
+console.log('activeuser')
+console.log(activeuser)
+revision.forEach(Indexs);
+var menu;
+console.log(role);
+if (bander==true)
+{
+switch(role)
+{
+  case 1:
+menu=admin;
+    break;
+    case 2:
+    menu=chofer;
+      break;
+      case 3:
+menu= comun;
+        break;
+        case 4:
+    menu=defaults;
+          break;
+}
+menu=menu.replace('NombreUser',usernames);
+menu=menu.replace('ID',idusers);
+menu=menu.replace('ID',idusers);
+menu=menu.replace('ID',idusers);
+menu=menu.replace('ID',idusers);
+menu=menu.replace('ID',idusers);
+menu=menu.replace('ID',idusers);
+menu=menu.replace('ID',idusers);
+menu=menu.replace('ID',idusers);
+menu=menu.replace('ID',idusers);
+console.log(menu);
  nombre= req.body.nombre;
  ApellidoP=req.body.apellido1;
  ApellidoM=req.body.apellido2;
@@ -238,21 +280,40 @@ router.post('/Altau/:id',function(req,res){
 Rol=req.body.select;
 switch(Rol)
 {
-  case 'value1':
-    res.render('pages/AltaUser',{def:admin});
-    break;
     case 'value2':
-      res.render('pages/AltaUser',{def:admin});
+      Rol=1
       break;
       case 'value3':
-        res.render('pages/AltaUser',{def:admin});
+        Rol=2
         break;
 }
-
-
+console.log(rol)
+dbAlta.AltaEm(nombre,ApellidoP,ApellidoM,Usuario,contraseña,Rol).then(resultado=>{
+res.render('pages/AltaUser',{def:menu});
+});
+}
   });
+  var idusers,usernames,role;
+  function Indexs(element, index, array) {
+    
+    console.log('paso en index antes de if');
+    console.log(element.ID_USER)
+    if (element.ID_USER==ids)
+    {
+      console.log('paso en index');
+      console.log(element.ROLE);
+      idusers= element.ID_USER,
+     usernames= element.USERNAME,
+     role=element.ROLE
+      bander=true;
+   return counter;
+    } 
+    else
+    {
+     counter=counter+1
+    }      
+   }
   
-
 
 
 
