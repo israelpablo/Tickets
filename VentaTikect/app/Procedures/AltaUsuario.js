@@ -1,6 +1,6 @@
 var sql = require('mssql');
 var config= require('../Configuration/dbconfig');
-async function AltaEm (Nombre,app,apm,usuario,pass,idacceso) {
+async function AltaUsuario(Nombre,app,apm,correo,usuario,pass,idacceso) {
     try{
    
       console.log(usuario);
@@ -9,10 +9,11 @@ async function AltaEm (Nombre,app,apm,usuario,pass,idacceso) {
          .input('Nombre'	,Nombre	)
          .input('app'	,	app	)
          .input('apm'	, apm	)
+         .input('correo'	, correo	)
          .input('usuario'	,	usuario	)
          .input('pass', 	pass	)
          .input('idacceso'	, 	idacceso	)
-         .execute('AltaEmp')
+         .execute('AltaUsuario')
       
     return resulta.recordsets;
     } catch(err)
@@ -23,5 +24,4 @@ async function AltaEm (Nombre,app,apm,usuario,pass,idacceso) {
    //}
    
    module.exports ={
-       AltaEm : AltaEm
-   }
+       AltaUsuario : AltaUsuario }

@@ -27,13 +27,13 @@
                                         </div>
                                         <div class="Row-General">
                                             <div class="boxing">
-                                                <input type="text" name="nombre" id="nombretxt" autofocus="">
+                                                <input type="text" name="nombre" id="nombretxt" autofocus="" required>
                                             </div> 
                                             <div class="boxing">
-                                                <input  type="text" name="apellido1" id="apellidoTXT1">
+                                                <input  type="text" name="apellido1" id="apellidoTXT1" required>
                                             </div>
                                             <div class="boxing">
-                                                <input  type="text" name="apellido2" id="apellidoTXT2">
+                                                <input  type="text" name="apellido2" id="apellidoTXT2" required>
                                             </div>
                                         </div>
                                         <div class="Row-General">
@@ -49,13 +49,13 @@
                                         </div>
                                         <div class="Row-General">
                                             <div class="boxing">
-                                                <input type="text" name="Usuario" id="Usuariotxt" autofocus="">
+                                                <input type="text" name="Usuario" id="Usuariotxt" required>
                                             </div> 
                                             <div class="boxing">
-                                                <input  type="password" name="Contras1" id="ContrasTXT1">
+                                                <input  type="password" name="Contras1" id="ContrasTXT1" required>
                                             </div>
                                             <div class="boxing">
-                                                <input  type="password" name="Contras2" id="ContrasTXT2">
+                                                <input  type="password" name="Contras2" id="ContrasTXT2" required>
                                             </div>
                                         </div>
                                       
@@ -88,7 +88,29 @@
   
  </section>
  <script >
-     $('#Registro').click(function(){
+$(document).ready(function(){
+  $("#form1").submit(function() {
+    val=$('#ContrasTXT1').val();
+         val2=$('#ContrasTXT2').val();
+         if(val==val2)
+        {
+            if (val3=='value1')
+            {
+               alert('Elige un rol');
+               return false;  
+           
+             }
+        	
+              return true;	
+      } else {alert("Contraseña no es igual");	
+           return false;  
+      }
+   
+    		
+    });
+});
+
+    /* $('#Registro').click(function(){
          val=$('#ContrasTXT1').val();
          val2=$('#ContrasTXT2').val();
         
@@ -105,6 +127,7 @@
             if (val3=='value1')
             {
                alert('Elige un rol');
+              $('#form1').attr('action', '/#');
              }
               // break;
                //case'value2':
@@ -123,6 +146,6 @@
 alert('Verificar contraseña');
         }
 
-});
+});*/
  </script>
  

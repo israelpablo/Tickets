@@ -87,6 +87,7 @@ var iduse,nombreuse;
   const dbAcceso = require('../app/Procedures/Accesos');
   const dbConsulta=require('../app/Procedures/Consulta');
   const dbAlta=require('../app/Procedures/AltaEmpleado');
+  const dbAltaUsers=require('../app/Procedures/AltaUsuario');
   router.post('/Sesion', function(req, res) {
    
 var menu;
@@ -225,6 +226,19 @@ res.render('pages/home',{def:defaults,df:de,catalogo:result52[0]});
   router.get('/usernew', function(req, res) {
     res.render('pages/usernew',{def:defaults});
   });
+  router.post('/usernew', function(req, res) {
+
+    nombre= req.body.nombre;
+    ApellidoP=req.body.apellido1;
+    ApellidoM=req.body.apellido2;
+    Usuario=req.body.Usuario;
+    contraseña =req.body.Contras1;
+    Correo=req.body.correo;
+   Rol=3;
+   dbAltaUsers.AltaUsuario(nombre,ApellidoP,ApellidoM,Correo,Usuario,contraseña,Rol).then(resultado=>{
+    res.render('pages/thank-you',{def:defaults,no:nombre+ ' ' +ApellidoP + ' ' + ApellidoM,usu:Usuario});
+  });
+  });
 router.get('/Altau/:id',function(req,res){
 form= '<form action="/Altau/idusuario" class="form1" method="POST" id="form1">';
 form =form.replace('idusuario',req.params.id);
@@ -275,7 +289,7 @@ console.log(menu);
  nombre= req.body.nombre;
  ApellidoP=req.body.apellido1;
  ApellidoM=req.body.apellido2;
- Usuario=req.body.Usario;
+ Usuario=req.body.Usuario;
  contraseña =req.body.Contras1;
 Rol=req.body.select;
 switch(Rol)
@@ -287,9 +301,10 @@ switch(Rol)
         Rol=2
         break;
 }
-console.log(rol)
+form= '<form action="/Altau/idusuario" class="form1" method="POST" id="form1">';
+form =form.replace('idusuario',req.params.id);
 dbAlta.AltaEm(nombre,ApellidoP,ApellidoM,Usuario,contraseña,Rol).then(resultado=>{
-res.render('pages/AltaUser',{def:menu});
+res.render('pages/AltaUser',{def:menu,forma:form});
 });
 }
   });
