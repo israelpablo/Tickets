@@ -42,7 +42,7 @@ chofer=`<header>
   <ul class="nav navbar-nav">
     <li><a href="/ID">Home</a></li>
     <li><a href="/Captura/ID">Capturar boleto</a></li>
-    <li><a href="/HistorialC/ID">Total Boletos</a></li>
+    <li><a href="/TotalBoleto/ID">Total Boletos</a></li>
     <li><a href="/about/ID">About</a></li>
     <li><a href="/contact/ID">Contact</a></li>
   </ul>
@@ -171,7 +171,6 @@ dbConsulta.Consulta('Catalogo').then(result52=>{
     });
     
   });
-
 function IndexConexion(element,index,array)
 {
   if (element.IdUsuario==ids)
@@ -218,11 +217,9 @@ dbConsulta.Consulta('Catalogo').then(result52=>{
 res.render('pages/home',{def:defaults,df:de,catalogo:result52[0]});
 });
   });
-
   router.get('/olvido', function(req, res) {
     res.render('pages/home',{def:defaults});
   });
-
   router.get('/usernew', function(req, res) {
     res.render('pages/usernew',{def:defaults});
   });
@@ -355,4 +352,7 @@ res.render('pages/AltaUser',{def:menu,forma:form});
  // router.get('/usernew', function(req, res) {
   //  res.render('pages/usernew');
  // });
-  
+  //revision de captura
+  router.get('/Captura/:ID', function(req, res) {
+    res.render('pages/Boletos',{def:defaults});
+  });
