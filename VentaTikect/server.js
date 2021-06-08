@@ -3,7 +3,7 @@ const express= require('express');
 const app= express();
 const bodyParser= require('body-parser');
 
-const port= process.env.PORT || 80;
+const port= process.env.PORT || 8080;
 const expressLayouts= require('express-ejs-layouts');
 //use ejs and express layouts
 app.set('view engine','ejs');

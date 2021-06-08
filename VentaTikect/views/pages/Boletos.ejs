@@ -8,7 +8,7 @@
         
            <div class="Row-General center  ">
                        <div class="registro">
-                             <form action="/usernew"  method="POST">
+                  <%- formas%>
 
                                 <div class="Col-General center ">
                                     <p class="p">Registro</p>
@@ -37,17 +37,18 @@
                                         <div class="Row-General">
                                         <table class="default ce">
                                           <tr>
-                                            <th>Ruta</th>
+                                            <th>Id Boleto</th>
+                                            <th>Fecha</th>
                                             <th>Precio</th>
                                             
                                           </tr> 
-                                          <% Captura.forEach(function(catalogo) { %>
+                                          <% boletos.forEach(function(boletos) { %>
                                         
                                           <tr>
                                           
-                                            <td><%= Captura.NombreRuta %></td>
-                                        
-                                            <td><%= Captura.precio %></td>
+                                            <td><%= boletos.IdBoleto %></td>
+                                            <td><%= boletos.FechaCreacion %></td>
+                                            <td><%= boletos.precio %></td>
                                         
                                           
                                         

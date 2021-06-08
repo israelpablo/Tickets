@@ -6,7 +6,8 @@ const router= express.Router();
 // export our router
 module.exports=router;
 // route for our homepage
-
+//var ids;
+var bander;
 admin=`<header>
 <nav class="navbar navbar-inverse">
   <a href="/UsuarioActivo" class="navbar-brand">NombreUser</a>
@@ -61,6 +62,10 @@ defaults=`<header>
 </header>`;
 var  activeuser=[];
 var ids;
+var tipouser;
+bandera=false;
+var iduse,nombreuse;
+var idusers,usernames,role;
 //Sesion default
 router.get('/', function(req, res) {
     de=`<a href="/" class="btn btn-lg btn-primary">Solicitar Boleto</a>
@@ -81,13 +86,15 @@ router.get('/', function(req, res) {
     res.render('pages/contact',{def:defaults});
   });
 //sesion todo los demas
-var tipouser;
-bandera=false;
-var iduse,nombreuse;
+
+
   const dbAcceso = require('../app/Procedures/Accesos');
   const dbConsulta=require('../app/Procedures/Consulta');
+  const dbConsulta2=require('../app/Procedures/Consulta2');
   const dbAlta=require('../app/Procedures/AltaEmpleado');
   const dbAltaUsers=require('../app/Procedures/AltaUsuario');
+
+
   router.post('/Sesion', function(req, res) {
    
 var menu;
@@ -98,6 +105,8 @@ var menu;
     act(result);
 
 console.log(nombreuse)
+console.log('idusuario')
+console.log(iduse)
 banderas= false;
      counter=0;
  /*  revisar=activeuser;
@@ -155,13 +164,15 @@ dbConsulta.Consulta('Catalogo').then(result52=>{
         menu=menu.replace('ID',iduse);
         menu=menu.replace('ID',iduse);
         dbConsulta.Consulta('Catalogo').then(result52=>{
-
+console.log(menu)
         res.render('pages/home',{def:menu,df:de,catalogo:result52[0]});
       });
         break;
         case 'Default':
           de=`<a href="/" class="btn btn-lg btn-primary">Solicitar Boleto</a>
           <a href="/contact" class="btn btn-lg btn-primary">Cotactanos</a>`;
+
+          
           res.render('pages/home',{def:defaults,df:de,catalogo:result52});
           break;
    
@@ -239,12 +250,49 @@ res.render('pages/home',{def:defaults,df:de,catalogo:result52[0]});
 router.get('/Altau/:id',function(req,res){
 form= '<form action="/Altau/idusuario" class="form1" method="POST" id="form1">';
 form =form.replace('idusuario',req.params.id);
+ids=req.params.id;
+console.log('ids')
+console.log(ids);
+bander=false;
+revision= activeuser;
+console.log('activeuser')
+console.log(activeuser)
+revision.forEach(Indexs);
+var menu;
+console.log('role');
+console.log(role);
+if (bander==true)
+{
+switch(role)
+{
+case 1:
+menu=admin;
+  break;
+  case 2:
+  menu=chofer;
+    break;
+    case 3:
+menu= comun;
+      break;
+      case 4:
+  menu=defaults;
+        break;
+}
+menu=menu.replace('NombreUser',usernames);
+menu=menu.replace('ID',idusers);
+menu=menu.replace('ID',idusers);
+menu=menu.replace('ID',idusers);
+menu=menu.replace('ID',idusers);
+menu=menu.replace('ID',idusers);
+menu=menu.replace('ID',idusers);
+menu=menu.replace('ID',idusers);
+menu=menu.replace('ID',idusers);
+menu=menu.replace('ID',idusers);
+}
 
-
-res.render('pages/AltaUser',{def:admin,forma:form});
+res.render('pages/AltaUser',{def:menu,forma:form});
 });
-var ids;
-var bander;
+
 router.post('/Altau/:id',function(req,res){
   ids=req.params.id;
   console.log(ids);
@@ -259,16 +307,16 @@ if (bander==true)
 {
 switch(role)
 {
-  case 1:
+  case 'Admin':
 menu=admin;
     break;
-    case 2:
+    case 'Chofer':
     menu=chofer;
       break;
-      case 3:
+      case 'Comun':
 menu= comun;
         break;
-        case 4:
+        case 'Default':
     menu=defaults;
           break;
 }
@@ -305,17 +353,18 @@ res.render('pages/AltaUser',{def:menu,forma:form});
 });
 }
   });
-  var idusers,usernames,role;
+
   function Indexs(element, index, array) {
     
-    console.log('paso en index antes de if');
-    console.log(element.ID_USER)
+console.log('ids')
+console.log(ids)
     if (element.ID_USER==ids)
     {
       console.log('paso en index');
       console.log(element.ROLE);
       idusers= element.ID_USER,
      usernames= element.USERNAME,
+     console.log( element.ROLE)
      role=element.ROLE
       bander=true;
    return counter;
@@ -354,5 +403,95 @@ res.render('pages/AltaUser',{def:menu,forma:form});
  // });
   //revision de captura
   router.get('/Captura/:ID', function(req, res) {
-    res.render('pages/Boletos',{def:defaults});
+    ids=req.params.ID;
+  console.log(ids);
+  bander=false;
+revision= activeuser;
+console.log('activeuser')
+console.log(activeuser)
+revision.forEach(Indexs);
+var menu;
+console.log('rool');
+console.log(role);
+if (bander==true)
+{
+switch(role)
+{
+  case 1:
+menu=admin;
+    break;
+    case 2:
+    menu=chofer;
+      break;
+      case 3:
+menu= comun;
+        break;
+        case 4:
+    menu=defaults;
+          break;
+}
+console.log(menu);
+menu=menu.replace('NombreUser',usernames);
+menu=menu.replace('ID',idusers);
+menu=menu.replace('ID',idusers);
+menu=menu.replace('ID',idusers);
+menu=menu.replace('ID',idusers);
+menu=menu.replace('ID',idusers);
+menu=menu.replace('ID',idusers);
+menu=menu.replace('ID',idusers);
+menu=menu.replace('ID',idusers);
+menu=menu.replace('ID',idusers);
+
+}
+form=`<form action="/Captura/`+idusers+`"  method="POST">`;
+    dbConsulta2.Consulta2(req.params.ID,0).then(resultado=>{
+    res.render('pages/Boletos',{def:menu,boletos: resultado[0],formas:form});
+  });
+  });
+
+  router.post('/Captura/:ID', function(req, res) {
+    ids=req.params.ID;
+  console.log(ids);
+  bander=false;
+revision= activeuser;
+console.log('activeuser')
+console.log(activeuser)
+revision.forEach(Indexs);
+var menu;
+console.log('rool');
+console.log(role);
+if (bander==true)
+{
+switch(role)
+{
+  case 1:
+menu=admin;
+    break;
+    case 2:
+    menu=chofer;
+      break;
+      case 3:
+menu= comun;
+        break;
+        case 4:
+    menu=defaults;
+          break;
+}
+console.log(menu);
+menu=menu.replace('NombreUser',usernames);
+menu=menu.replace('ID',idusers);
+menu=menu.replace('ID',idusers);
+menu=menu.replace('ID',idusers);
+menu=menu.replace('ID',idusers);
+menu=menu.replace('ID',idusers);
+menu=menu.replace('ID',idusers);
+menu=menu.replace('ID',idusers);
+menu=menu.replace('ID',idusers);
+menu=menu.replace('ID',idusers);
+
+}
+form=`<form action="/Captura/`+idusers+`"  method="POST">`;
+    dbConsulta2.Consulta2(req.params.ID,req.body.idboleto).then(resultado=>{
+    res.render('pages/Boletos',{def:menu,boletos: resultado[0],formas:form});
+  });
   });
