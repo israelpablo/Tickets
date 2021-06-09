@@ -23,6 +23,7 @@
     "express-ejs-layouts": "^2.5.0",
     "mssql": "^7.1.0",
     "nodemon": "^2.0.6",
+    "qr-image": "^3.2.0",
     "tedious": "^11.0.8"
   }
 }

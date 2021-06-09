@@ -1,14 +1,14 @@
 var sql = require('mssql');
 var config= require('../Configuration/dbconfig');
-async function AltaBoleto (idusuario,idruta) {
+async function Ruta (tabla) {
     try{
-   
+   console.log('Paso?')
      let conn = await sql.connect(config);
     let resulta=   await conn.request()  
 
-         .input('idUsuario', idusuario	)
-         .input('idRuta', 	idruta	)
-        .execute('BoletoAlta')
+         .input('id'	,	'id'	)
+     
+        .execute('rutas')
       
     return resulta.recordsets;
     } catch(err)
@@ -19,5 +19,5 @@ async function AltaBoleto (idusuario,idruta) {
    //}
    
    module.exports ={
-       AltaBoleto : AltaBoleto
+       Ruta: Ruta
    }

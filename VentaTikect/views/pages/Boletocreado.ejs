@@ -1,0 +1,29 @@
+
+<%- contentFor('heros')%>
+<link rel="stylesheet" href="/css/Sesion.css" />
+<script src="/js/jquery-3.2.1.js"></script>
+
+
+<%- def%>
+
+<%- contentFor('body') %>
+ <script type="text/javascript" src="/public/js/jquery.qrcode.js"></script>
+ <script type="text/javascript" src="/public/js/qrcode.js"></script>
+<section> 
+   
+ <%- imagen%>
+
+ <img src="/i_love_qr.png">
+</section>
+
+ <script>
+     //jQuery('#qrcode').qrcode("this plugin is great");
+     jQuery('#qrcodeTable').qrcode({
+         render	: "table",
+         text	: "http://jetienne.com"
+     });	
+     jQuery('#qrcodeCanvas').qrcode({
+         text	: "http://jetienne.com"
+     });	
+ </script>
+

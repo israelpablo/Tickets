@@ -93,8 +93,9 @@ router.get('/', function(req, res) {
   const dbConsulta2=require('../app/Procedures/Consulta2');
   const dbAlta=require('../app/Procedures/AltaEmpleado');
   const dbAltaUsers=require('../app/Procedures/AltaUsuario');
+  const dbAltaBoletos=require('../app/Procedures/AltaBoletos');
 
-
+  const dbRuta=require('../app/Procedures/CatRutas');
   router.post('/Sesion', function(req, res) {
    
 var menu;
@@ -383,7 +384,7 @@ console.log(ids)
  /* router.get('/:hola', function(req, res) {
     res.render('pages/home',{def:comun});
   });*/
-  router.get('/Sesion', function(req, res) {
+ /* router.get('/Sesion', function(req, res) {
     res.render('pages/Sesion');
   });
   router.get('/about', function(req, res) {
@@ -397,7 +398,7 @@ console.log(ids)
   });
   router.get('/Consulta', function(req, res) {
     res.render('pages/Consulta');
-  });
+  });*/
  // router.get('/usernew', function(req, res) {
   //  res.render('pages/usernew');
  // });
@@ -494,4 +495,244 @@ form=`<form action="/Captura/`+idusers+`"  method="POST">`;
     dbConsulta2.Consulta2(req.params.ID,req.body.idboleto).then(resultado=>{
     res.render('pages/Boletos',{def:menu,boletos: resultado[0],formas:form});
   });
+  });
+
+  router.get('/Venta/:ID', function(req, res) {
+    ids=req.params.ID;
+  console.log(ids);
+  bander=false;
+revision= activeuser;
+console.log('activeuser')
+console.log(activeuser)
+revision.forEach(Indexs);
+var menu;
+console.log('rool');
+console.log(role);
+if (bander==true)
+{
+switch(role)
+{
+  case 1:
+menu=admin;
+    break;
+    case 2:
+    menu=chofer;
+      break;
+      case 3:
+menu= comun;
+        break;
+        case 4:
+    menu=defaults;
+          break;
+}
+console.log(menu);
+menu=menu.replace('NombreUser',usernames);
+menu=menu.replace('ID',idusers);
+menu=menu.replace('ID',idusers);
+menu=menu.replace('ID',idusers);
+menu=menu.replace('ID',idusers);
+menu=menu.replace('ID',idusers);
+menu=menu.replace('ID',idusers);
+menu=menu.replace('ID',idusers);
+menu=menu.replace('ID',idusers);
+menu=menu.replace('ID',idusers);
+
+}
+form=`<form name="f1" id="f1" action="/Venta/`+idusers+`"  method="POST">`;
+dbRuta.Ruta().then(resultado=>{
+    res.render('pages/Compra',{def:menu,forma:form,boletos:resultado[0]});
+  });
+  });
+
+  router.post('/Venta/:ID', function(req, res) {
+    ids=req.params.ID;
+  console.log(ids);
+  bander=false;
+revision= activeuser;
+console.log('activeuser')
+console.log(activeuser)
+revision.forEach(Indexs);
+var menu;
+console.log('rool');
+console.log(role);
+if (bander==true)
+{
+switch(role)
+{
+  case 1:
+menu=admin;
+    break;
+    case 2:
+    menu=chofer;
+      break;
+      case 3:
+menu= comun;
+        break;
+        case 4:
+    menu=defaults;
+          break;
+}
+console.log(menu);
+menu=menu.replace('NombreUser',usernames);
+menu=menu.replace('ID',idusers);
+menu=menu.replace('ID',idusers);
+menu=menu.replace('ID',idusers);
+menu=menu.replace('ID',idusers);
+menu=menu.replace('ID',idusers);
+menu=menu.replace('ID',idusers);
+menu=menu.replace('ID',idusers);
+menu=menu.replace('ID',idusers);
+menu=menu.replace('ID',idusers);
+
+}
+var qr=require('qr-image');
+var qr_svg = qr.image('I love!', { type: 'png' });
+qr_svg.pipe(require('fs').createWriteStream('.\\public\\i_love_qr.png'));
+ /*
+var svg_string = qr.imageSync('I love QR!', { type: 'svg' });*/
+console.log(qr_svg)
+imge=`<img src="/public/i_love_qr.png">`
+form=`<form action="/Venta/`+idusers+`"  method="POST">`;
+dbAltaBoletos.AltaBoleto(idusers,req.body.escondido).then(resultado=>{
+    res.render('pages/Boletocreado',{def:menu,forma:form,imagen:imge});
+  });
+});
+
+  router.get('/:ID', function(req, res) {
+    ids=req.params.ID;
+    console.log(ids);
+    bander=false;
+  revision= activeuser;
+  console.log('activeuser')
+  console.log(activeuser)
+  revision.forEach(Indexs);
+  var menu;
+  console.log('rool');
+  console.log(role);
+  if (bander==true)
+  {
+  switch(role)
+  {
+    case 1:
+  menu=admin;
+      break;
+      case 2:
+      menu=chofer;
+        break;
+        case 3:
+  menu= comun;
+          break;
+          case 4:
+      menu=defaults;
+            break;
+  }
+  console.log(menu);
+  menu=menu.replace('NombreUser',usernames);
+  menu=menu.replace('ID',idusers);
+  menu=menu.replace('ID',idusers);
+  menu=menu.replace('ID',idusers);
+  menu=menu.replace('ID',idusers);
+  menu=menu.replace('ID',idusers);
+  menu=menu.replace('ID',idusers);
+  menu=menu.replace('ID',idusers);
+  menu=menu.replace('ID',idusers);
+  menu=menu.replace('ID',idusers);
+  
+  }
+    de=`<a href="/Venta/${idusers}" class="btn btn-lg btn-primary">Solicitar Boleto</a>
+    <a href="/contact" class="btn btn-lg btn-primary">Cotactanos</a>`;
+
+
+    dbConsulta.Consulta('Catalogo').then(result52=>{
+    res.render('pages/home',{def:menu,df:de,catalogo:result52[0]});
+  });
+  });
+
+  router.get('/contact/:ID', function(req, res) {
+    ids=req.params.ID;
+    console.log(ids);
+    bander=false;
+  revision= activeuser;
+  console.log('activeuser')
+  console.log(activeuser)
+  revision.forEach(Indexs);
+  var menu;
+  console.log('rool');
+  console.log(role);
+  if (bander==true)
+  {
+  switch(role)
+  {
+    case 1:
+  menu=admin;
+      break;
+      case 2:
+      menu=chofer;
+        break;
+        case 3:
+  menu= comun;
+          break;
+          case 4:
+      menu=defaults;
+            break;
+  }
+  console.log(menu);
+  menu=menu.replace('NombreUser',usernames);
+  menu=menu.replace('ID',idusers);
+  menu=menu.replace('ID',idusers);
+  menu=menu.replace('ID',idusers);
+  menu=menu.replace('ID',idusers);
+  menu=menu.replace('ID',idusers);
+  menu=menu.replace('ID',idusers);
+  menu=menu.replace('ID',idusers);
+  menu=menu.replace('ID',idusers);
+  menu=menu.replace('ID',idusers);
+  
+  }
+    res.render('pages/contact',{def:menu});
+  });
+
+
+  router.get('/about/:ID', function(req, res) {
+    ids=req.params.ID;
+    console.log(ids);
+    bander=false;
+  revision= activeuser;
+  console.log('activeuser')
+  console.log(activeuser)
+  revision.forEach(Indexs);
+  var menu;
+  console.log('rool');
+  console.log(role);
+  if (bander==true)
+  {
+  switch(role)
+  {
+    case 1:
+  menu=admin;
+      break;
+      case 2:
+      menu=chofer;
+        break;
+        case 3:
+  menu= comun;
+          break;
+          case 4:
+      menu=defaults;
+            break;
+  }
+  console.log(menu);
+  menu=menu.replace('NombreUser',usernames);
+  menu=menu.replace('ID',idusers);
+  menu=menu.replace('ID',idusers);
+  menu=menu.replace('ID',idusers);
+  menu=menu.replace('ID',idusers);
+  menu=menu.replace('ID',idusers);
+  menu=menu.replace('ID',idusers);
+  menu=menu.replace('ID',idusers);
+  menu=menu.replace('ID',idusers);
+  menu=menu.replace('ID',idusers);
+  
+  }
+    res.render('pages/about',{def:menu});
   });
