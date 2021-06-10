@@ -9,21 +9,33 @@
 <%- contentFor('body') %>
  <script type="text/javascript" src="/public/js/jquery.qrcode.js"></script>
  <script type="text/javascript" src="/public/js/qrcode.js"></script>
-<section> 
-   
- <%- imagen%>
+<section > 
 
- <img src="/i_love_qr.png">
+    <div id="imp1" style="margin-top: 10%; margin-bottom: 3%; margin-left: 35%; margin-right: 45%;"><div style="background-color:#d4eefd;padding:12px;margin:12px 0 12px 0;">
+ <% usuario.forEach(function(usuario) { %>
+
+<label><%= usuario.Nombre %> <%= usuario.ApellidoP %> <%= usuario.ApellidoM %> </label><br>
+<% }); %>
+<% boleto.forEach(function(boleto) { %>
+
+<label><%= boleto.NombreRuta %></label><br>
+<label><%= boleto.precio %></label><br>
+<% }); %>
+<%-imagen%>
+</div></div>
+<button type="button" onclick="javascript:imprim1(imp1);">Imprimir</button>
 </section>
 
+ 
  <script>
-     //jQuery('#qrcode').qrcode("this plugin is great");
-     jQuery('#qrcodeTable').qrcode({
-         render	: "table",
-         text	: "http://jetienne.com"
-     });	
-     jQuery('#qrcodeCanvas').qrcode({
-         text	: "http://jetienne.com"
-     });	
+function imprim1(imp1){
+var printContents = document.getElementById('imp1').innerHTML;
+        w = window.open();
+        w.document.write(printContents);
+        w.document.close(); // necessary for IE >= 10
+        w.focus(); // necessary for IE >= 10
+		w.print();
+		w.close();
+        return true;}
  </script>
 

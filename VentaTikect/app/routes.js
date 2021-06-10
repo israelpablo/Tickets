@@ -585,16 +585,23 @@ menu=menu.replace('ID',idusers);
 menu=menu.replace('ID',idusers);
 
 }
-var qr=require('qr-image');
-var qr_svg = qr.image('I love!', { type: 'png' });
+
+form=`<form action="/Venta/`+idusers+`"  method="POST">`;
+dbAltaBoletos.AltaBoleto(idusers,req.body.escondido).then(resultado=>{
+  var qr=require('qr-image');
+  console.log('numero de boleto')
+  console.log(resultado[2][0])
+  var vca=resultado[2];
+  vca.forEach(extraer);
+  console.log('numero de boleto')
+  console.log(numeroboleto)
+var qr_svg = qr.image(numeroboleto, { type: 'png' });
 qr_svg.pipe(require('fs').createWriteStream('.\\public\\i_love_qr.png'));
  /*
 var svg_string = qr.imageSync('I love QR!', { type: 'svg' });*/
-console.log(qr_svg)
-imge=`<img src="/public/i_love_qr.png">`
-form=`<form action="/Venta/`+idusers+`"  method="POST">`;
-dbAltaBoletos.AltaBoleto(idusers,req.body.escondido).then(resultado=>{
-    res.render('pages/Boletocreado',{def:menu,forma:form,imagen:imge});
+
+imge=`<img src="/i_love_qr.png">`
+    res.render('pages/Boletocreado',{def:menu,forma:form,imagen:imge,boleto:resultado[0],usuario:resultado[1]});
   });
 });
 
@@ -736,3 +743,10 @@ dbAltaBoletos.AltaBoleto(idusers,req.body.escondido).then(resultado=>{
   }
     res.render('pages/about',{def:menu});
   });
+var numeroboleto
+  function extraer(element, index, array) {
+    
+   
+  numeroboleto=   element.idboleto  ;
+          
+       }

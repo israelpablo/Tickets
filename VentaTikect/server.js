@@ -3,7 +3,7 @@ const express= require('express');
 const app= express();
 const bodyParser= require('body-parser');
 
-const port= process.env.PORT || 8080;
+const port= process.env.PORT || 80;
 const expressLayouts= require('express-ejs-layouts');
 //use ejs and express layouts
 app.set('view engine','ejs');
@@ -16,5 +16,5 @@ const router=require('./app/routes');
 app.use('/',router);
 //start the server
 app.listen(port,function(){
-    console.log('app started in port 8080');
+    console.log('app started in port 80');
 });
